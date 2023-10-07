@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
-
+import Form from './components/form/Form';
+import Results from './components/results/Results'
 function App() {
+  const [check,setCheck]=useState(false);
+  const [values, setValues] = useState({});
+  
+  const handleData = (d) =>{
+    
+    setCheck(true);
+    // loadResult();
+    setValues(values =>({
+      ...d
+    }));
+    // setValues(values=>({}));
+  }
+
+
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="Title">INVESTMENT CALCULATOR</div>
+      <Form onGetData={handleData}/>
+      {check? <Results items={values}/>: ""}
     </div>
   );
 }
